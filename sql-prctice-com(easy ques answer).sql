@@ -99,3 +99,6 @@ select company_name,contact_name,fax from customers where fax is not null
 
 -- Show the first_name, last_name. hire_date of the most recently hired employee.
 select first_name,last_name,hire_date from employees order by hire_date desc limit 1
+
+-- Show the average unit price rounded to 2 decimal places, the total units in stock, total discontinued products from the products table.
+select round(avg(unit_price),2),sum(units_in_stock),sum(discontinued) from products
