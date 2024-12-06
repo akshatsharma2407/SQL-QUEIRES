@@ -1,3 +1,5 @@
+--                                                                    HOSPITAL.DB
+                                                             
 -- Show first name of patients that start with the letter 'C'
 select first_name,last_name from patients where allergies is null;
 
@@ -45,3 +47,55 @@ select first_name,last_name,birth_date from patients where height > 160 and weig
 
 -- Write a query to find list of patients first_name, last_name, and allergies where allergies are not null and are from the city of 'Hamilton'
 select first_name,last_name,allergies from patients where allergies is not null and city = 'Hamilton';
+
+
+
+
+
+
+--                                                                NORTHWIND.DB
+
+-- Show the category_name and description from the categories table sorted by category_name.
+select category_name,description from categories order by category_name;
+
+-- Show the ProductName, CompanyName, CategoryName from the products, suppliers, and categories table
+select product_name,company_name,category_name from categories t1
+join products t2
+on t1.category_id = t2.category_id
+join suppliers t3
+on t2.supplier_id = t3.supplier_id;
+
+
+-- Show the category_name and the average product unit price for each category rounded to 2 decimal places.
+select category_name,round(avg(unit_price),2) from categories t1
+join products t2 on
+t1.category_id = t2.category_id
+group by t1.category_id
+
+-- Show the city, company_name, and and contact_name from the merged customer and supplier table.
+-- Create a column that contains 'customers' or 'suppliers' depending on the table it came from.
+select city,company_name,contact_name,'customers' as relationship from customers
+union 
+select city,company_name,contact_name,'suppliers' as relationship from suppliers
+
+-- Show all the contact_name, address, city of all customers which are not from 'Germany', 'Mexico', 'Spain'
+select contact_name,address,city from customers where country not in ('Germany','Mexico','Spain')
+
+-- Show order_date, shipped_date, customer_id, Freight of all orders placed on 2018 Feb 26
+select order_date,shipped_date,customer_id,freight from orders where order_date = '2018-02-26';
+
+-- Show the employee_id, order_id, customer_id, required_date, shipped_date from all orders shipped later than the required date
+select employee_id,order_id,customer_id,required_date,shipped_date from orders
+where date(shipped_date) > date(required_date)
+
+-- Show all the even numbered Order_id from the orders table
+select order_id from orders where order_id%2 = 0
+
+-- Show the city, company_name, contact_name of all customers from cities which contains the letter 'L' in the city name, sorted by contact_name
+select city,company_name,contact_name from customers where city like '%L%' order by contact_name
+
+-- Show the company_name, contact_name, fax number of all customers that has a fax number. (not null)
+select company_name,contact_name,fax from customers where fax is not null
+
+-- Show the first_name, last_name. hire_date of the most recently hired employee.
+select first_name,last_name,hire_date from employees order by hire_date desc limit 1
