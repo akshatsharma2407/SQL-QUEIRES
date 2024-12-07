@@ -9,6 +9,17 @@
 -- 2. DEPENDENT SUBQUERIES (subqueries which depends on outer query for their execution)
 
 
+--                                                                     DATA USED
+--  1. ZOMATO DATA -> https://docs.google.com/spreadsheets/d/1JgNHxTixDA50W1l6pNFmHKRaX1a9QnXrpGLsJtzo6Gg/edit?gid=0#gid=0
+--  2. MOVIES -> https://drive.google.com/file/d/17TXqIYnNmZYg9fd-raO3jIjFmXrYFH1z/view?usp=drive_link
+
+
+
+
+
+
+
+
 
 --                                          SCALAR SUBQUERIES
 
