@@ -1,6 +1,6 @@
 # SQL Practice - Basic to Advanced Queries
 
-I am excited to announce that I have successfully completed all the basic-level SQL questions on [SQL Practice](https://www.sql-practice.com/). To further solidify my understanding and track my progress, I have created this repository where I will add and continue to update MySQL queries, ranging from basic to advanced levels.
+I am excited to announce that I have successfully completed all the questions on [SQL Practice](https://www.sql-practice.com/). To further solidify my understanding and track my progress, I have created this repository where I will add and continue to update MySQL queries, ranging from basic to advanced levels.
 
 ## Repository Purpose
 
