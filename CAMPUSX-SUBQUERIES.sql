@@ -167,3 +167,60 @@ set money = (select sum(amount)*0.1 from `order` t2 where t1.user_id = t2.user_i
 delete from user where user_id in (
 select user_id from user where user_id not in (select user_id from `order`)
 );
+
+
+
+
+
+
+
+
+
+
+
+--                                                        SOME ADDITIONAL QUESTIONS
+
+-- DATA - https://drive.google.com/file/d/1S-EaktjCBAZNW0DcCSVrESUU76Hez08U/view
+
+-- Display the names of athletes who won a gold medal in the 2008 Olympics 
+-- and whose height is greater than the average height of all athletes in the 2008 Olympics. 
+select * from olympic where year = 2008 and medal = 'Gold'
+and height > (select avg(height) from olympic where year = 2008);
+
+-- Display the names of athletes who won a medal in the sport of basketball in the 2016 Olympics
+-- and whose weight is less than the average weight of all athletes who won a medal in the 2016 Olympics.
+select * from olympic where sport = 'basketball' and year = 2016
+and medal is not null and Weight < (select avg(weight) from olympic where medal is not null and year = 2016);
+
+-- Display the names of all countries that have won more than 50 medals in a single year.
+select country,year,count(*) from olympic where medal is not null 
+group by country,year having count(*) > 50;
+
+-- How many patients have claimed more than the average claim amount for patients who are smokers
+-- and have at least one child, and belong to the southeast region?
+select count(*) from insurance where claim > (select avg(claim) from insurance where smoker = 'yes'
+and children >= 1 and region = 'southeast');
+
+-- How many patients have claimed more than the average claim amount for patients 
+-- who are not smokers and have a BMI greater than the average BMI for patients 
+-- who have at least one child?
+select count(claim) from insurance where claim > (select avg(claim) from insurance where 
+smoker = 'No' and bmi > (select avg(bmi) from insurance where children >= 1));
+
+-- How many patients have claimed more than the average claim amount for patients 
+-- who have a BMI greater than the average BMI for patients who are diabetic,
+-- have at least one child, and are from the southwest region?
+select count(*) from insurance where claim > (select avg(claim) from insurance
+where bmi > (select avg(bmi) from insurance where diabetic = 'yes' and children >= 1 
+and region = 'southwest'));
+
+-- What is the difference in the average claim amount between patients who are smokers
+--  and patients who are non-smokers, 
+-- and have the same BMI and number of children?
+select A.bmi,A.children,A.non_smoker_claim-B.smoker_claim from 
+(select bmi,children,avg(claim) as non_smoker_claim from insurance where smoker = 'No' 
+group by bmi,children) A
+join
+(select bmi,children,avg(claim) as smoker_claim from insurance where smoker = 'Yes' 
+group by bmi,children) B
+on A.bmi = B.bmi and A.children = B.children;
