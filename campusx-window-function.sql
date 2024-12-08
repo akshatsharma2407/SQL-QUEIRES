@@ -1,5 +1,6 @@
--- GENERATING DATA
+-- ZOMATO DATA - https://drive.google.com/drive/folders/1xCNbO_LJIkr7bi9YDa7hUFYgJ-IZ01A-
 
+-- STUDENTS TOY DATA-->
 CREATE TABLE students (
  student_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
