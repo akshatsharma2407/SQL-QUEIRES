@@ -73,3 +73,44 @@ on A.student_id = B.student_id and A.subject_name = B.subject_name
 order by B.student_id, B.subject_name
 ) z;
 
+-- Write a solution to find managers with at least five direct reports.
+select t1.name from employee t1
+join employee t2
+on t1.id = t2.managerId
+group by t1.id
+having count(*) > 4;
+
+-- Write a solution to find the confirmation rate of each user.
+select t1.user_id,round((select count(*) from confirmations m1 where action = 'confirmed'
+and m1.user_id = t2.user_id)/count(*),2) as confirmation_rate
+from signups t1
+left join confirmations t2
+on t1.user_id = t2.user_id
+group by t1.user_id
+order by confirmation_rate;
+
+-- Write a solution to report the movies with an odd-numbered ID and a description that is not "boring".
+select * from cinema where id% 2 <> 0 and description <> 'boring'
+order by rating desc;
+
+-- Write a solution to find the average selling price for each product. average_price should be rounded to 2 decimal places.
+-- If a product does not have any sold units, its average selling price is assumed to be 0.
+select product_id,
+case 
+    when average_prices is null then 0
+    else average_prices
+end as average_price
+from (
+select product_id,round(sum(total)/sum(units),2) as average_prices from (
+select t1.product_id,price,units,price*units as total from prices t1
+left join unitssold t2
+on t1.product_id = t2.product_id and t2.purchase_date between t1.start_date and t1.end_date
+) Z group by product_id) T;
+
+-- Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits.
+select project_id,round(avg(experience_years),2) as average_years from (
+select t1.project_id,t2.employee_id,name,experience_years from project t1
+join employee t2
+on t1.employee_id = t2.employee_id)
+z group by project_id;
+
