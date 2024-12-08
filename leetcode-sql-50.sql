@@ -114,3 +114,8 @@ join employee t2
 on t1.employee_id = t2.employee_id)
 z group by project_id;
 
+-- Write a solution to find the percentage of the users registered in each contest rounded to two decimals.
+-- Return the result table ordered by percentage in descending order. In case of a tie, order it by contest_id in ascending order.
+select contest_id,round(count(*)/(select count(distinct user_id) from users),4)*100 as percentage from register group by contest_id
+order by percentage desc,contest_id ;
+
