@@ -180,3 +180,47 @@ select *,first_value(claim) over(partition by region,gender order by age) as fir
 row_number() over(partition by region,gender order by age) as rownumber from 
 filtered_data) z
 where rownumber = 1;
+
+-- DATA - https://www.kaggle.com/datasets/thedevastator/drug-performance-evaluation?select=Drug_clean.csv
+
+-- For each drug type (RX, OTC, RX/OTC),
+-- what is the average ease of use and satisfaction level of drugs with a price above the median for their type?
+
+select distinct(type),avg(easeofuse) over(partition by type) as 'avg_easeofuse',
+avg(satisfaction) over(partition by type) as 'avg_satisfaction'
+from (
+select * from (
+select *,percentile_disc(0.5) within group(order by price) over(partition by type) as 'median_price' from drugs)
+z where price > median_price) T;
+
+-- What is the cumulative distribution of EaseOfUse ratings for each drug type (RX, OTC, RX/OTC)?
+-- Show the results in descending order by drug type and cumulative distribution. (Use the built-in method and the manual method by calculating on your own.)
+
+select *,
+cume_dist() over(partition by type order by easeofuse) as cdf
+from drugs
+order by type desc, cdf desc;
+
+-- What is the median satisfaction level for each medical condition?
+-- Show the results in descending order by median satisfaction level. (Don't repeat the same rows of your result.).
+select * from (
+select distinct(`condition`),percentile_disc(0.5) within group(order by satisfaction) over(partition by `condition`) as 'median_satisfaction' from drugs
+) z order by median_satisfaction desc;
+
+-- What is the running average of the price of drugs for each medical condition? Show the results in ascending order by medical condition and drug name.
+select *,
+avg(price) over(partition by `condition` rows between 5 preceding and current row) as running_avg
+from drugs
+order by `condition` , drug;
+
+-- What is the percentage change in the number of reviews for each drug between the previous row and the current row? Show the results in descending order by percentage change.
+select *,(reviews-previous_review)/previous_review as 'percentage_change' from (
+select *,lag(reviews) over(partition by drug,`condition` order by reviews desc rows between 1 preceding and current row) as 'previous_review'
+from drugs)
+z order by percentage_change desc;
+
+-- What is the percentage of total satisfaction level for each drug type (RX, OTC, RX/OTC)? Show the results in descending order by drug type and percentage of total satisfaction.
+select * from(
+select distinct(type),
+round(sum(satisfaction) over(partition by type)/sum(satisfaction) over(),2)*100 as 'total_satisfaction' from drugs) z
+order by type desc , total_satisfaction desc;
