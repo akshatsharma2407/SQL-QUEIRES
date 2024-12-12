@@ -1,4 +1,5 @@
 ## High-Level Summary of Preprocessing and EDA
+[DATASET-link](https://www.kaggle.com/datasets/ehtishamsadiq/uncleaned-laptop-price-dataset)
 
 ### Data Preprocessing:
 1. **Backup Creation:** A backup of the original data is made to ensure data integrity before any changes.
