@@ -47,6 +47,11 @@ This repository is designed to:
 
 ---
 
+## CERTIFICATIONS SHOWS MY EXPERIENCE IN MySQL
+![Alt Text]([image_url_or_path](https://www.hackerrank.com/certificates/iframe/202465121ebd) "MySQL BASIC TEST")
+
+--
+
 ## 🤝 Contributions
 Feel free to explore, learn, and suggest improvements. If you find this helpful, give it a ⭐!
 
