@@ -48,7 +48,7 @@ This repository is designed to:
 ---
 
 ## CERTIFICATIONS SHOWS MY EXPERIENCE IN MySQL
-![Alt Text]([image_url_or_path](https://www.hackerrank.com/certificates/iframe/202465121ebd) "MySQL BASIC TEST")
+![HACKERRANK](https://www.hackerrank.com/certificates/iframe/202465121ebd "SQL Practice and Case Studies")
 
 --
 
