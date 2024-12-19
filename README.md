@@ -49,7 +49,27 @@ This repository is designed to:
 
 ## CERTIFICATIONS SHOWS MY EXPERIENCE IN MySQL
 
---
+### 🌟 1. Hackerrank Basic SQL Test Certification
+<p align="center">
+    <img src="./SQL_BASIC_CERTIFICATE.png" alt="Hackerrank Basic SQL Test Certification" width="500">
+</p>
+
+---
+
+### 🌟 2. Hackerrank Intermediate SQL Test Certification
+<p align="center">
+    <img src="./SQL_INTERMEDIATE_CERTIFICATE.png" alt="Hackerrank Intermediate SQL Test Certification" width="500">
+</p>
+
+---
+
+### 🌟 3. Hackerrank Advanced SQL Test Certification
+<p align="center">
+    <img src="./SQL_ADVANCE_CERTIFICATE.png" alt="Hackerrank Advanced SQL Test Certification" width="500">
+</p>
+
+
+---
 
 ## 🤝 Contributions
 Feel free to explore, learn, and suggest improvements. If you find this helpful, give it a ⭐!
