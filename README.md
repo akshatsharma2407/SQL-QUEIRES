@@ -68,6 +68,13 @@ This repository is designed to:
     <img src="./SQL_ADVANCE_CERTIFICATE.png" alt="Hackerrank Advanced SQL Test Certification" width="500">
 </p>
 
+--- 
+
+### 🌟 4. LEETCODE-SQL-50 BADGE
+<p align="center">
+    <img src="./LEETCODE-SQL-50.png" alt="LEETCODE SQL 50 BADGE" width="500">
+</p>
+
 
 ---
 
